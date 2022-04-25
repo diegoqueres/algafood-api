@@ -7,28 +7,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AtivacaoClienteService {
-    // Ponto de injeção por @Autowired + Atributo
-    @Autowired
+
+    @Autowired(required = false)
     private Notificador notificador;
-
- /* Ponto de injeção por Construtor + @Autowired
-    @Autowired
-    public AtivacaoClienteService(Notificador notificador) {
-        this.notificador = notificador;
-    }
-
-    public AtivacaoClienteService(String qualquer) {}
- */
 
     public void ativar(Cliente cliente) {
         cliente.ativar();
-        this.notificador.notificar(cliente, "Seu cadastro no sistema está ativo!");
-    }
 
- /*  Ponto de injeção por Setter + @Autowired
-    @Autowired
-    public void setNotificador(Notificador notificador) {
-        this.notificador = notificador;
+        if (notificador != null)
+            this.notificador.notificar(cliente, "Seu cadastro no sistema está ativo!");
+        else
+            System.out.println("Não existe notificador, mas cliente foi ativado.");
     }
- */
 }
