@@ -2,8 +2,6 @@ package com.algaworks.algafood.domain.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,4 +20,7 @@ public class Restaurante {
 
     @Column(name = "taxa_frete")
     private BigDecimal taxaFrete;
+
+    @ManyToOne
+    private Cozinha cozinha;
 }
