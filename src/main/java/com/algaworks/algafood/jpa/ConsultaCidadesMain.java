@@ -18,7 +18,7 @@ public class ConsultaCidadesMain {
 		
 		CidadeRepository repository = applicationContext.getBean(CidadeRepository.class);
 		
-		List<Cidade> todosCidades = repository.todas();
+		List<Cidade> todosCidades = repository.listar();
 		
 		for (Cidade cidade : todosCidades) {
 			System.out.printf("%d - %s - %s\n",
