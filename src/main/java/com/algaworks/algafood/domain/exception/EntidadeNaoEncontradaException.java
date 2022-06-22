@@ -1,9 +1,9 @@
 package com.algaworks.algafood.domain.exception;
 
-public class EntidadeNaoEcontradaException extends RuntimeException {
+public class EntidadeNaoEncontradaException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
-    public EntidadeNaoEcontradaException(String mensagem) {
+    public EntidadeNaoEncontradaException(String mensagem) {
         super(mensagem);
     }
 }
