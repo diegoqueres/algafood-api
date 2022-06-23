@@ -18,11 +18,11 @@ public class ConsultaFormaPagamentoMain {
 		
 		FormaPagamentoRepository repository = applicationContext.getBean(FormaPagamentoRepository.class);
 		
-		List<FormaPagamento> todosFormaPagamentos = repository.todas();
+		List<FormaPagamento> todosFormaPagamentos = repository.listar();
 		
 		for (FormaPagamento formaPagamento : todosFormaPagamentos) {
 			System.out.printf("%d - %s\n",
-					formaPagamento.getId(), formaPagamento.getNome());
+					formaPagamento.getId(), formaPagamento.getDescricao());
 		}
 	}
 	
