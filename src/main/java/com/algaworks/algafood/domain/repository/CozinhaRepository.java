@@ -11,9 +11,10 @@ import java.util.Optional;
 @Repository
 public interface CozinhaRepository extends JpaRepository<Cozinha, Long> {
 
-	//List<Cozinha> findQualquerCoisaByNome(String nome);
-	//List<Cozinha> findCozinhasByNome(String nome);
-	List<Cozinha> findTodasByNome(String nome);
+	//Keywords de query methods: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+	//List<Cozinha> findQualquerCoisaByNomeContaining(String nome);
+	//List<Cozinha> findCozinhasByNomeContaining(String nome);
+	List<Cozinha> findByNomeContaining(String nome);
 
 	Optional<Cozinha> findByNome(String nome);
 
