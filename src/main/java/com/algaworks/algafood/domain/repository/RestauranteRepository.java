@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,12 @@ import com.algaworks.algafood.domain.model.Restaurante;
 public interface RestauranteRepository 
 		extends CustomJpaRepository<Restaurante, Long>, RestauranteRepositoryQueries,
 		JpaSpecificationExecutor<Restaurante> {
+
+	//Objetivo: trazer todos os dados só em uma consulta.
+	//Numa associação ManyToOne o fetch já é feito, e numa associação ManyToMany não.
+	//É necessário incluir então fetch para trazer na mesma query.
+	@Query("from Restaurante r join fetch r.cozinha left join fetch r.formasPagamento")
+	List<Restaurante> findAll();
 
 	List<Restaurante> queryByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
 	
