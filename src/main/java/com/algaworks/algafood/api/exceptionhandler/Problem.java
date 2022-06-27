@@ -9,10 +9,12 @@ import lombok.Getter;
 @Builder
 public class Problem {
 
-    // Adjustment to RFC 7807 (Problem Details for HTTP APIs)
+    // RFC 7807 (Problem Details for HTTP APIs)
     private Integer status;
     private String type;
     private String title;
     private String detail;
+
+    private String userMessage;
 
 }
