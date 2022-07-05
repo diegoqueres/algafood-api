@@ -19,9 +19,14 @@ public class CadastroCozinhaIntegrationTests {
 
 	@Autowired
 	private CadastroCozinhaService cadastroCozinha;
-	
+
+	// Muitos Padrões podem ser usados para nomes de teste:
+	//   shouldComportamentoEsperado_WhenEstadoEmTeste
+	//   givenPrecondicoes_WhenEstadoEmTeste_ThenComportamentoEsperado
+	//   testDescricao
+	//   cadastroCozinhaComSucesso
 	@Test
-	public void testarCadastroCozinhaComSucesso() {
+	public void deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos() {
 		// cenário
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome("Chinesa");
@@ -35,7 +40,7 @@ public class CadastroCozinhaIntegrationTests {
 	}
 	
 	@Test(expected = ConstraintViolationException.class)
-	public void testarCadastroCozinhaSemNome() {
+	public void deveFalhar_QuandoCadastrarCozinhaSemNome() {
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome(null);
 		
