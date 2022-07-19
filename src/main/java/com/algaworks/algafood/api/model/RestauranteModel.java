@@ -10,6 +10,10 @@ import java.math.BigDecimal;
 public class RestauranteModel {
     private Long id;
     private String nome;
-    private BigDecimal taxaFrete;
+    private BigDecimal frete;
     private CozinhaModel cozinha;
+
+    private Long idCozinha;
+    private String cozinhaNome;
+    private String nomeCozinha;
 }

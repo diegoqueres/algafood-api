@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class CozinhaModel {
     private Long id;
-    private String nome;
+    private String cozinhaNome;
 }
