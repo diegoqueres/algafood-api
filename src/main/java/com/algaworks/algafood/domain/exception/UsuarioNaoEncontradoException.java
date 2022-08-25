@@ -7,9 +7,9 @@ public class UsuarioNaoEncontradoException extends EntidadeNaoEncontradaExceptio
 	public UsuarioNaoEncontradoException(String mensagem) {
 		super(mensagem);
 	}
-
-	public UsuarioNaoEncontradoException(Long grupoId) {
-		this(String.format("Não existe um cadastro de usuário com código %d", grupoId));
+	
+	public UsuarioNaoEncontradoException(Long cozinhaId) {
+		this(String.format("Não existe um cadastro de usuário com código %d", cozinhaId));
 	}
 	
 }
