@@ -19,11 +19,11 @@ public class EmailProperties {
 	@NotNull
 	private String remetente;
 
-	private TipoImplementacao impl = TipoImplementacao.FAKE;
+	private Implementacao impl = Implementacao.FAKE;
 
 	private Sandbox sandbox = new Sandbox();
 
-	public enum TipoImplementacao {
+	public enum Implementacao {
 		SMTP, FAKE, SANDBOX
 	}
 
