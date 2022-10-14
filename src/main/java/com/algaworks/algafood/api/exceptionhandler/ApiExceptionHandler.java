@@ -41,54 +41,57 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@Autowired
 	private MessageSource messageSource;
-
+	
 	@Override
-	protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+	protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		return ResponseEntity.status(status).headers(headers).build();
 	}
-
+	
 	@Override
-	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-
+	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
+			WebRequest request) {
+		
 		return handleValidationInternal(ex, headers, status, request, ex.getBindingResult());
 	}
-
+	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-		return handleValidationInternal(ex, headers, status, request, ex.getBindingResult());
+	    return handleValidationInternal(ex, headers, status, request, ex.getBindingResult());
 	}
 
-	private ResponseEntity<Object> handleValidationInternal(Exception ex, HttpHeaders headers, HttpStatus status, WebRequest request, BindingResult bindingResult) {
+	private ResponseEntity<Object> handleValidationInternal(Exception ex, HttpHeaders headers,
+			HttpStatus status, WebRequest request, BindingResult bindingResult) {
 		ProblemType problemType = ProblemType.DADOS_INVALIDOS;
-		String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
-
-		List<Problem.Object> problemObjects = bindingResult.getAllErrors().stream()
-				.map(objectError -> {
-					String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());
-					
-					String name = objectError.getObjectName();
-					
-					if (objectError instanceof FieldError) {
-						name = ((FieldError) objectError).getField();
-					}
-					
-					return Problem.Object.builder()
-						.name(name)
-						.userMessage(message)
-						.build();
-				})
-				.collect(Collectors.toList());
-
-		Problem problem = createProblemBuilder(status, problemType, detail)
-			.userMessage(detail)
-			.objects(problemObjects)
-			.build();
-
-		return handleExceptionInternal(ex, problem, headers, status, request);
+	    String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
+	    
+	    List<Problem.Object> problemObjects = bindingResult.getAllErrors().stream()
+	    		.map(objectError -> {
+	    			String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());
+	    			
+	    			String name = objectError.getObjectName();
+	    			
+	    			if (objectError instanceof FieldError) {
+	    				name = ((FieldError) objectError).getField();
+	    			}
+	    			
+	    			return Problem.Object.builder()
+	    				.name(name)
+	    				.userMessage(message)
+	    				.build();
+	    		})
+	    		.collect(Collectors.toList());
+	    
+	    Problem problem = createProblemBuilder(status, problemType, detail)
+	        .userMessage(detail)
+	        .objects(problemObjects)
+	        .build();
+	    
+	    return handleExceptionInternal(ex, problem, headers, status, request);
 	}
-
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> handleUncaught(Exception ex, WebRequest request) {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;		
