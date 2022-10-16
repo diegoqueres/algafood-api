@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://www.algafood.local:8000"})
+@CrossOrigin(maxAge = 20)	//Access-Control-Max-Age: tempo para armazenar cache do "preflight": requisição OPTIONS feita em certas condições (request simples; GET,HEAD,POST; de origens diferentes, etc).
+// resposta da requisição OPTIONS do navegador para checar se pode fazer a requisição original em seguida.
+// Definição de requisição simples, de acordo com CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Simple_requests
 @RestController
 @RequestMapping(value = "/restaurantes")
 public class RestauranteController {
@@ -37,7 +39,6 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteInputDisassembler restauranteInputDisassembler;
 
-	@CrossOrigin   // liberado para todos origins: *
 	@JsonView(RestauranteView.Resumo.class)
 	@GetMapping
 	public List<RestauranteModel> listar() {
