@@ -1,9 +1,12 @@
 package com.algaworks.algafood.domain.service;
 
-import lombok.*;
-
 import java.util.Map;
 import java.util.Set;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Singular;
 
 public interface EnvioEmailService {
 
@@ -14,7 +17,6 @@ public interface EnvioEmailService {
 	class Mensagem {
 		
 		@Singular
-		@Setter
 		private Set<String> destinatarios;
 		
 		@NonNull
@@ -22,7 +24,7 @@ public interface EnvioEmailService {
 		
 		@NonNull
 		private String corpo;
-
+		
 		@Singular("variavel")
 		private Map<String, Object> variaveis;
 		
