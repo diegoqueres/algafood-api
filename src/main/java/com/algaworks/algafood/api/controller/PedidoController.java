@@ -53,7 +53,8 @@ public class PedidoController implements PedidoControllerOpenApi{
 	
 	@Autowired
 	private PedidoInputDisassembler pedidoInputDisassembler;
-	
+
+	@Override
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public Page<PedidoResumoModel> pesquisar(PedidoFilter filtro, 
 			@PageableDefault(size = 10) Pageable pageable) {
@@ -70,7 +71,8 @@ public class PedidoController implements PedidoControllerOpenApi{
 		
 		return pedidosResumoModelPage;
 	}
-	
+
+	@Override
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public PedidoModel adicionar(@Valid @RequestBody PedidoInput pedidoInput) {
@@ -88,7 +90,8 @@ public class PedidoController implements PedidoControllerOpenApi{
 			throw new NegocioException(e.getMessage(), e);
 		}
 	}
-	
+
+	@Override
 	@GetMapping(value = "/{codigoPedido}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public PedidoModel buscar(@PathVariable String codigoPedido) {
 		Pedido pedido = emissaoPedido.buscarOuFalhar(codigoPedido);

@@ -45,7 +45,8 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
 	
 	@Autowired
 	private FormaPagamentoInputDisassembler formaPagamentoInputDisassembler;
-	
+
+	@Override
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<FormaPagamentoModel>> listar(ServletWebRequest request) {
 		ShallowEtagHeaderFilter.disableContentCaching(request.getRequest());
@@ -72,7 +73,8 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
 				.eTag(eTag)
 				.body(formasPagamentosModel);
 	}
-	
+
+	@Override
 	@GetMapping(value = "/{formaPagamentoId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<FormaPagamentoModel> buscar(@PathVariable Long formaPagamentoId,
 			ServletWebRequest request) {
@@ -101,7 +103,8 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
 				.eTag(eTag)
 				.body(formaPagamentoModel);
 	}
-	
+
+	@Override
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public FormaPagamentoModel adicionar(@RequestBody @Valid FormaPagamentoInput formaPagamentoInput) {
@@ -123,7 +126,8 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
 		
 		return formaPagamentoModelAssembler.toModel(formaPagamentoAtual);
 	}
-	
+
+	@Override
 	@DeleteMapping(value = "/{formaPagamentoId}", produces = {})
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long formaPagamentoId) {
