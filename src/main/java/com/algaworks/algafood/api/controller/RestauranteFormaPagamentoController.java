@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/restaurantes/{restauranteId}/formas-pagamento",
-		produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/restaurantes/{restauranteId}/formas-pagamento")
 public class RestauranteFormaPagamentoController implements RestauranteFormaPagamentoControllerOpenApi {
 
 	@Autowired
@@ -30,7 +29,7 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
 	private FormaPagamentoModelAssembler formaPagamentoModelAssembler;
 
 	@Override
-	@GetMapping
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<FormaPagamentoModel> listar(@PathVariable Long restauranteId) {
 		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
 
