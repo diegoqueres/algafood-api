@@ -106,7 +106,7 @@ public class PedidoController implements PedidoControllerOpenApi{
 				"taxaFrete", "taxaFrete",
 				"valorTotal", "valorTotal",
 				"dataCriacao", "dataCriacao",
-				"nomerestaurante", "restaurante.nome",
+				"restaurante.nome", "restaurante.nome",
 				"restaurante.id", "restaurante.id",
 				"cliente.id", "cliente.id",
 				"cliente.nome", "cliente.nome"
