@@ -57,7 +57,6 @@ public class RestauranteController implements RestauranteControllerOpenApi {
 	private RestauranteInputDisassembler restauranteInputDisassembler;
 
 	@Override
-//	@JsonView(RestauranteView.Resumo.class)
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public CollectionModel<RestauranteBasicoModel> listar() {
 		return restauranteBasicoModelAssembler
@@ -65,7 +64,6 @@ public class RestauranteController implements RestauranteControllerOpenApi {
 	}
 
 	@Override
-//	@JsonView(RestauranteView.ApenasNome.class)
 	@GetMapping(params = "projecao=apenas-nome", produces = MediaType.APPLICATION_JSON_VALUE)
 	public CollectionModel<RestauranteApenasNomeModel> listarApenasNomes() {
 		return restauranteApenasNomeModelAssembler
