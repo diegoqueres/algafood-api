@@ -3,9 +3,11 @@ package com.algaworks.algafood.core.springfox;
 import com.algaworks.algafood.api.exceptionhandler.Problem;
 import com.algaworks.algafood.api.model.CidadeModel;
 import com.algaworks.algafood.api.model.CozinhaModel;
+import com.algaworks.algafood.api.model.EstadoModel;
 import com.algaworks.algafood.api.model.PedidoResumoModel;
 import com.algaworks.algafood.api.openapi.model.CidadesModelOpenApi;
 import com.algaworks.algafood.api.openapi.model.CozinhasModelOpenApi;
+import com.algaworks.algafood.api.openapi.model.EstadosModelOpenApi;
 import com.algaworks.algafood.api.openapi.model.LinksModelOpenApi;
 import com.algaworks.algafood.api.openapi.model.PageableModelOpenApi;
 import com.algaworks.algafood.api.openapi.model.PedidosResumoModelOpenApi;
@@ -70,15 +72,23 @@ public class SpringFoxConfig {
 						File.class, InputStream.class)
 				.directModelSubstitute(Pageable.class, PageableModelOpenApi.class)
 				.directModelSubstitute(Links .class, LinksModelOpenApi .class)
+
 				.alternateTypeRules(AlternateTypeRules.newRule(
 						typeResolver.resolve(PagedModel.class, CozinhaModel.class),
 						CozinhasModelOpenApi.class))
+
 				.alternateTypeRules(AlternateTypeRules.newRule(
 						typeResolver.resolve(Page.class, PedidoResumoModel.class),
 						PedidosResumoModelOpenApi.class))
+
 				.alternateTypeRules(AlternateTypeRules.newRule(
 						typeResolver.resolve(CollectionModel.class, CidadeModel.class),
 						CidadesModelOpenApi.class))
+
+				.alternateTypeRules(AlternateTypeRules.newRule(
+						typeResolver.resolve(CollectionModel.class, EstadoModel.class),
+						EstadosModelOpenApi.class))
+
 				.apiInfo(apiInfo())
 				.tags(new Tag("Cidades", "Gerencia as cidades"),
 						new Tag("Grupos", "Gerencia os grupos de usuários"),
