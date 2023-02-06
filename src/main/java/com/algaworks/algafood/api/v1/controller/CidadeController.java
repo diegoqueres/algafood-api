@@ -102,4 +102,5 @@ public class CidadeController implements CidadeControllerOpenApi {
 	public void remover(@PathVariable Long cidadeId) {
 		cadastroCidade.excluir(cidadeId);
 	}
+	
 }
